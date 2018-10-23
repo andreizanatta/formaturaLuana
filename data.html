@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Data</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet">
+</head>
+<body onload="atualizaContador()">
+        
+    <div class="centralizado3">
+        <a href="data.html" style="color: red"><h2>data</h2></a>
+        <a href="index.html"><h2>voltar</h2></a>
+    </div>
+    <p style="font-size: 20px;" class="centralizado2">Vai ser dia 15/02/2019,<br> às 18h 00min 00seg!</p>
+    <div class="centralizado">
+        <span id="contador"></span>
+    </div>
+
+    <script>
+        var YY = 2019;
+        var MM = 02;
+        var DD = 15;
+        var HH = 00;
+        var MI = 00;
+        var SS = 00; 
+
+        function atualizaContador() {
+        var hoje = new Date();
+        var futuro = new Date(YY,MM-1,DD,HH,MI,SS); 
+
+        var ss = parseInt((futuro - hoje) / 1000);
+        var mm = parseInt(ss / 60);
+        var hh = parseInt(mm / 60);
+        var dd = parseInt(hh / 24); 
+
+        ss = ss - (mm * 60);
+        mm = mm - (hh * 60);
+        hh = hh - (dd * 24); 
+
+        var faltam = '';
+        faltam += (dd && dd > 1) ? dd+' dias, ' : (dd==1 ? '1 dia, ' : '');
+        faltam += (toString(hh).length) ? hh+' hr, ' : '';
+        faltam += (toString(mm).length) ? mm+' min e ' : '';
+        faltam += ss+' seg'; 
+
+        if (dd+hh+mm+ss > 0) {
+            document.getElementById('contador').innerHTML = 'Faltam '+faltam;
+            setTimeout(atualizaContador,1000);
+        } else {
+            document.getElementById('contador').innerHTML = 'CHEGOU!!!!';
+            setTimeout(atualizaContador,1000);
+        }
+        }
+    </script>
+</body>
+</html>
